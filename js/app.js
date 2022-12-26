@@ -1,42 +1,32 @@
-const navList = document.getElementById("navbar__list");
-const sections = Array.from(document.querySelectorAll("section"));
+const navCont = document.getElementById("navbar__list");
+const sectionsArray = Array.from(document.querySelectorAll("section"));
 
 function createListItem() {
-    for (sec of sections) {
+    for (sec of sectionsArray) {
         listItem = document.createElement("li");
-        listItem.innerHTML = `
-        <a href="#${sec.id}" data-nav="${sec.id}" class="menu__link">
-                ${sec.dataset.nav}
-        </a>
-        `;
-        navList.appendChild(listItem);
+        listItem.innerHTML = `<a href="#${sec.id}" data-nav="${sec.id}" class="menu__link">${sec.dataset.nav}</a>`;
+        navCont.appendChild(listItem);
 
     }
 }
 createListItem();
 //styling for the active states getboundingClientRect
 window.onscroll = function () {
-    document.querySelectorAll("section").forEach(function (active) {
+    document.querySelectorAll("section").forEach(function (activeWindow) {
         
-        if(
-            active.getBoundingClientRect().top >= -400 &&
-            active.getBoundingClientRect().top <= 150
-        ) {
-            active.classList.add("your-active-class");
-        }else{
-            active.classList.remove("your-active-class");
+        if(activeWindow.getBoundingClientRect().top >= -300 &&activeWindow.getBoundingClientRect().top <= 250) {
+            activeWindow.classList.add("your-active-class");
+        }else{activeWindow.classList.remove("your-active-class");
         }
     });
 };
 //when clicking an item from the navigation menu, the link should scroll to the appropriate section. 
-navList.addEventListener("click", (tosec) => {
-    tosec.preventDefault();
-    if(tosec.target.dataset.nav) {
+navCont.addEventListener("click", (land) => {
+    land.preventDefault();
+    if(land.target.dataset.nav) {
         document
-            .getElementById(`${tosec.target.dataset.nav}`)
+            .getElementById(`${land.target.dataset.nav}`)
             .scrollIntoView({ behavior: "smooth" });   
-    setTimeout(() => {
-        location.hash = `${tosec.target.dataset.nav}`;
-    }, 170);
+    setTimeout(() => {location.hash = `${land.target.dataset.nav}`}, 200);
     }
 });
