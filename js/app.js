@@ -1,7 +1,7 @@
 const navCont = document.getElementById("navbar__list");
 const sectionsArray = Array.from(document.querySelectorAll("section"));
-
-function createListItem() {
+// a fuction to contain the lest items and 
+function lestItemMaker() {
     for (sec of sectionsArray) {
         listItem = document.createElement("li");
         listItem.innerHTML = `<a href="#${sec.id}" data-nav="${sec.id}" class="menu__link">${sec.dataset.nav}</a>`;
@@ -9,7 +9,7 @@ function createListItem() {
 
     }
 }
-createListItem();
+lestItemMaker();
 //styling for the active states getboundingClientRect
 window.onscroll = function () {
     document.querySelectorAll("section").forEach(function (activeWindow) {
@@ -23,9 +23,7 @@ window.onscroll = function () {
 navCont.addEventListener("click", (land) => {
     land.preventDefault();
     if(land.target.dataset.nav) {
-        document
-            .getElementById(`${land.target.dataset.nav}`)
-            .scrollIntoView({ behavior: "smooth" });   
-    setTimeout(() => {location.hash = `${land.target.dataset.nav}`}, 200);
+        document.getElementById(`${land.target.dataset.nav}`)
+                .scrollIntoView({ behavior: "smooth" });   
     }
 });
