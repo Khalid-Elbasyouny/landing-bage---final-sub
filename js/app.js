@@ -1,8 +1,8 @@
 const navCont = document.getElementById("navbar__list");
-const sectionsArray = Array.from(document.querySelectorAll("section"));
+const allSecs = Array.from(document.querySelectorAll("section"));
 // a fuction to contain the lest items and 
 function lestItemMaker() {
-    for (sec of sectionsArray) {
+    for (sec of allSecs) {
         listItem = document.createElement("li");
         listItem.innerHTML = `<a href="#${sec.id}" data-nav="${sec.id}" class="menu__link">${sec.dataset.nav}</a>`;
         navCont.appendChild(listItem);
